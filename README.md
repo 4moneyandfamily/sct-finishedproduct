@@ -384,6 +384,20 @@ The booking block is the one gold-framed panel on the page. The shop asked for
 the walk-in section to stand apart from the rest; on a black wall the way to do
 that is to gild the frame, not to paint the panel another colour.
 
+## The page checks whether it is stale
+
+A browser holding an old copy of this site cannot tell: every file it would
+check, it already has. That is not hypothetical — three rounds of photo
+corrections were merged and deployed while the shop's own phone went on
+showing the old ones, because the tab had been open since before the deploy.
+
+`app.js` asks the server once on load, and again whenever the tab comes back
+to the front: one conditional request for `data/site.js`, which is a 304 and
+nothing more when the page is current. If the build stamp that comes back is
+different, the page reloads itself. At most once per build per tab, so a slow
+deploy cannot put it in a loop. `tests/reliability.spec.js` covers both halves
+— that it reloads when it should, and that it stops once it has caught up.
+
 ## Which version am I looking at
 
 The footer ends with a small `Build <date> · <hostname>`. It is there because

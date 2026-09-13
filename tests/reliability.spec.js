@@ -155,3 +155,35 @@ test('landscape phone and tablet orientations still fit', async ({ page }) => {
     expect(img.height, `image collapsed at ${w}x${h}`).toBeGreaterThan(40);
   }
 });
+
+/* A tab open since before a deploy cannot tell it is stale — every file it
+   would check, it already has. That is how corrected photos stayed crooked on
+   the shop's phone through three merges. app.js asks the server once on load
+   and again when the tab comes back; if this stops working, the site can lie
+   to someone for as long as they leave the tab open. */
+test('a page left open behind a deploy reloads itself', async ({ page }) => {
+  const real = await (await page.request.get('/data/site.js')).text();
+  const build = real.match(/build:\s*"([^"]+)"/)[1];
+
+  // first load is current: the check must find nothing and leave the page be
+  await page.goto('/');
+  await expect(page.locator('.card').first()).toBeVisible();
+  await page.waitForTimeout(600);
+  await expect(page.locator('.card').first()).toBeVisible();
+
+  // now the server moves on, and the open tab should notice and come back new
+  await page.route('**/data/site.js', (r) => r.fulfill({
+    status: 200, contentType: 'application/javascript',
+    body: real.replace('build: "' + build + '"', 'build: "9999-12-31z"'),
+  }));
+  const reloaded = page.waitForNavigation({ timeout: 15000 });
+  await page.evaluate(() => window.checkBuild());   // what visibilitychange calls
+  await reloaded;
+  await expect(page.locator('#build-stamp')).toContainText('9999-12-31z');
+
+  // and it must not keep reloading once it has caught up
+  const stamp = await page.locator('#build-stamp').textContent();
+  await page.evaluate(() => window.checkBuild());
+  await page.waitForTimeout(1500);
+  await expect(page.locator('#build-stamp')).toHaveText(stamp);
+});

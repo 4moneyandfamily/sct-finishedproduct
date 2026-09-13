@@ -95,15 +95,12 @@
   }
   function base(photo) { return 'assets/g/' + photo.f.replace(/\.jpg$/, ''); }
 
-  /* Every derivative URL carries the build stamp, and it has to.
-     assets/g is served immutable for a year, which is true of a file nobody
-     touches and a lie about one that gets corrected: rotating a master
-     rewrites the bytes behind a filename that does not change, so a visitor
-     who saw the sideways version of a painting would go on seeing it until
-     2027. Three prints were rotated the day this went in, and that is exactly
-     how it showed up — the fix deployed, the shop's own phone kept the crooked
-     one. The stamp moves the URL when the site moves, which is the promise
-     immutable was making anyway. */
+  /* Every derivative URL carries the build stamp, and it has to. assets/g is
+     served immutable for a year, which is true of a file nobody touches and a
+     lie about one that gets corrected: rotating a master rewrites the bytes
+     behind a filename that does not move, so a visitor who saw a painting
+     sideways would go on seeing it until 2027. The stamp moves the URL when
+     the site moves, which is what immutable was promising anyway. */
   var GV = '?v=' + encodeURIComponent(SITE && SITE.build ? SITE.build : '0');
   function gsrc(photo, w) { return base(photo) + '-' + w + '.webp' + GV; }
   function srcset(photo) {
@@ -205,11 +202,9 @@
     var cover = p.photos[0];
     var n = p.photos.length;
     var veiled = p.sensitive && !revealed[p.id];
-    /* The 4:5 tile crops to fill, which suits a photograph of a tattoo and
-       ruins a painting shot wider than it is tall: a third of the piece is cut
-       off, and what survives is painted half again wider than the tile, so the
-       browser fetches too small a file for it and the card goes soft. Covers
-       wider than the tile are shown whole instead. */
+    /* The 4:5 tile crops to fill, which ruins a painting shot wider than it
+       is tall — a third cut off, and what survives painted wider than the tile
+       so the browser fetches too small a file. Those are shown whole. */
     var wide = cover.w > cover.h;
     var label = veiled
       ? 'Show ' + p.title + ' — contains nudity'
@@ -357,9 +352,8 @@
 
   function afterClose() {
     /* Escape shuts the <dialog> at once but queues this event, so a deep link
-       can reopen the viewer before we run. An open dialog means this event is
-       stale: the reopen already set everything the tidy-up below would reset,
-       and wiping the rail now would leave it open and blank. */
+       can reopen the viewer first. An open dialog means this one is stale: the
+       reopen set everything below, and wiping the rail would blank it. */
     if (dlg && dlg.open) return;
     document.documentElement.classList.remove('viewer-open');
     window.scrollTo(0, scrollY);
@@ -747,6 +741,31 @@
     openViewer(hit.p, hit.at, $('card-' + hit.p.id));
   }
 
+  /* Am I looking at the current site? A tab open since before a deploy cannot
+     tell: every file it would check, it already has. Photos were corrected and
+     merged three times while the shop's phone showed the old ones. So ask —
+     one conditional request, a 304 and nothing more when the page is current,
+     on load and when the tab comes back. One reload per build per tab. */
+  var lastCheck = 0;
+  function checkBuild() {
+    if (Date.now() - lastCheck < 60000) return;
+    lastCheck = Date.now();
+    fetch('data/site.js', { cache: 'no-cache' })
+      .then(function (r) { return r.text(); })
+      .then(function (t) {
+        var m = t.match(/build:\s*"([^"]+)"/);
+        if (!m || m[1] === SITE.build) return;
+        try {
+          if (sessionStorage.getItem('sct-build-' + m[1])) return;
+          sessionStorage.setItem('sct-build-' + m[1], '1');
+        } catch (_) { return; }
+        location.reload();
+      })
+      .catch(function () {});
+  }
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) checkBuild(); });
+  window.checkBuild = function () { lastCheck = 0; checkBuild(); };   // read by the test suite
+
   paintStatus();
   paintStatic();
   paintChips();
@@ -754,4 +773,5 @@
   auditForm();
   setInterval(paintStatus, 60000);
   route();
+  checkBuild();
 })();
