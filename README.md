@@ -123,6 +123,14 @@ broken images or a 4 MB photo on someone's phone plan.
   listing — different angle, different crop, different light, different
   filename — so the way to find them is to look at the wall. `npm run lint`
   cannot catch this one.
+- **Changing a photo that is already live means bumping `build`.** The
+  derivative filenames are not content-addressed and `assets/g` is served
+  immutable for a year, so a rotated or recropped master would otherwise sit
+  behind a URL every browser has been told to keep. `app.js` hangs
+  `SITE.build` off every derivative URL, which means the bump is the whole
+  fix — but without it the correction reaches nobody who has already loaded
+  the page. This is not theoretical: three prints went up sideways, were
+  corrected, and the shop's own phone went on showing the crooked ones.
 - **Do not edit the `w`/`h` numbers by hand.** They are what stops the page
   jumping while photos load (CLS is currently 0.0005). `add-photos.mjs` prints
   the right ones; `npm run lint` fails if they drift.

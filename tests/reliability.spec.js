@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('a missing photo shows a labelled placeholder, not a broken icon', async ({ page }) => {
-  await page.route('**/assets/g/orig-ig-193725-*.webp', r => r.abort());
+  await page.route('**/assets/g/orig-ig-193725-*', r => r.abort());   // ...webp?v=<build>
   await page.goto('/');
   await expect(page.locator('.card').first()).toBeVisible();
   await expect(page.locator('#card-p-orig-ig-193725 .broken')).toHaveText('Photo unavailable');

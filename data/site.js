@@ -17,7 +17,7 @@ window.SITE = {
 
      Bump it with any change that should be visible to a visitor. Format is
      the date, plus a letter if there is more than one in a day. */
-  build: "2026-09-13i",
+  build: "2026-09-13j",
 
   /* Every address where this site serves the public. Add one here, in this
      file, the moment the site goes up somewhere new — it needs no code change
@@ -250,7 +250,6 @@ window.SITE = {
         { f: "orig-ig-193806.jpg", w: 972, h: 1143, cap: "Back piece, color portrait" },
       ] },
     { id: "p-orig-ig-193813", style: "Black & grey", artistId: "james", title: "Lady head with rose", photos: [{ f: "orig-ig-193813.jpg", w: 1080, h: 1149, cap: "Lady head with rose" }] },
-    { id: "p-orig-ig-193822", style: "Paintings", artistId: "greg", title: "Eagle and cross Memorial Day art", photos: [{ f: "orig-ig-193822.jpg", w: 1080, h: 1223, cap: "Eagle and cross Memorial Day art" }] },
     { id: "set-mary-back", style: "Traditional", artistId: "brian", title: "Virgin Mary full back piece",
       photos: [
         { f: "orig-ig-193825.jpg", w: 1080, h: 1252, cap: "Virgin Mary backpiece" },

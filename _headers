@@ -15,7 +15,10 @@
   Cross-Origin-Opener-Policy: same-origin
   Strict-Transport-Security: max-age=31536000; includeSubDomains
 
-# Content-stable: the filenames carry their width, so cache them hard.
+# Content-stable: cache them hard. Safe only because app.js hangs the build
+# stamp off every assets/g URL — the filenames are not content-addressed, so a
+# photo corrected in place would otherwise stay crooked in every browser that
+# had already seen it. See the longer note in netlify.toml.
 /assets/g/*
   Cache-Control: public, max-age=31536000, immutable
 
