@@ -31,6 +31,8 @@ of search for now (OPEN-QUESTIONS #11).
 | `tests/` | Playwright suite, 339 tests across phone, tablet and desktop. |
 | `netlify.toml` | Redirects, cache headers, CSP and the other security headers. |
 | `_headers`, `_redirects` | The same rules in the portable format Cloudflare Pages and most other static hosts read. Keep in step with `netlify.toml`. |
+| `vercel.json` | The same rules again, for Vercel, which reads neither of the above. |
+| `.vercelignore` | What Vercel does not upload: the archival masters and the working notes. |
 | `AUDIT.md` | What this rebuild changed and why, with the image audit results. |
 | `OPEN-QUESTIONS.md` | **Read this.** Things only Brother Greg can answer. |
 | `LICENSES.md` | Font, icon and dependency licence audit. |
@@ -227,14 +229,47 @@ npm run fonts        # re-fetch the self-hosted fonts
 
 ## Deploying
 
-Netlify, publish directory `.`, no build command. The booking form is wired to
-Netlify Forms (`name="booking"` + `data-netlify="true"` + the hidden
-`form-name` input); Netlify picks it up at deploy time.
+No build step on any host. Publish the repository root and the site works.
+
+**Netlify** — publish directory `.`, no build command. The booking form is
+wired to Netlify Forms (`name="booking"` + `data-netlify="true"` + the hidden
+`form-name` input); Netlify picks it up at deploy time. This is the only host
+where a booking POST actually lands somewhere.
+
+**Vercel** — `vercel.json` carries the headers and redirects, because Vercel
+reads neither `netlify.toml` nor `_headers`. Two things about it are not
+obvious. Vercel matches header rules against the request path, and the front
+page is requested as `/`, not `/index.html` — so the must-revalidate rule is
+written for both or the one document that must never go stale is the one that
+does. And `.vercelignore` keeps `photos/` out of the upload: 65 MB of archival
+masters that no page links to, against 41 MB of derivatives that every page
+does. `tests/seo.spec.js` fails if `vercel.json` drifts from the other two
+config files.
+
+**Cloudflare Pages** — reads `_headers` and `_redirects` as they stand; build
+command empty, output directory `/`. Nothing else to configure. Add the
+`.pages.dev` address to `liveHosts` when you know it, or the booking form will
+tell real customers they are not on the live site.
+
+On Vercel and Cloudflare there is no form backend at all, so a booking POST
+cannot land. That is not a broken form — see **The form works with no form
+service switched on** below. It fails, and the visitor gets their inquiry
+pre-written in an email plus the phone number. The panel says "one more tap",
+never "sent".
+
+**The working notes are not part of the website.** `README.md`, `AUDIT.md`,
+`OPEN-QUESTIONS.md` and `LICENSES.md` are the shop's internal documents, and
+`OPEN-QUESTIONS.md` carries an unresolved consent question about identifiable
+photographs. Vercel drops them at upload time; Netlify and Cloudflare 301 them
+to the front page. Note what this does not fix: the repository itself is
+public, so the files are still readable on GitHub. Closing that is a repository
+visibility setting, not a deploy rule.
 
 **Live hosts vs the canonical host.** These are two different lists on purpose,
-and right now they disagree. `LIVE_HOSTS` at the top of `app.js` is where the
-site actually serves the public: the shop's domain, its `www`, and
-`sc-tattoo.netlify.app`. `CANON` is the one host search engines should index.
+and right now they disagree. `liveHosts` in `data/site.js` is where the site
+actually serves the public: the shop's domain, its `www`,
+`sc-tattoo.netlify.app` and `sct-finishedproduct.vercel.app`. `CANON` in
+`app.js` is the one host search engines should index.
 The shop's domain still points at the old OtherPeoplesPixels site, so the live
 address is the netlify.app one while the canonical address is not. When the
 domain moves over, drop the netlify.app entry from `LIVE_HOSTS` and everything

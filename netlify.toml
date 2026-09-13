@@ -21,6 +21,35 @@
   status = 301
 
 # ---------------------------------------------------------------------------
+# The working notes are not part of the website. OPEN-QUESTIONS.md in
+# particular discusses an unresolved consent question about identifiable
+# photographs, and it has no business sitting at a guessable URL on the shop's
+# own domain. Keep these in step with _redirects and .vercelignore.
+#
+# The repository itself is public, so this closes the website as a route to
+# them and nothing more. Making the repo private is the other half.
+# ---------------------------------------------------------------------------
+[[redirects]]
+  from = "/README.md"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/AUDIT.md"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/OPEN-QUESTIONS.md"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/LICENSES.md"
+  to = "/"
+  status = 301
+
+# ---------------------------------------------------------------------------
 # Security headers.
 #
 # The CSP is strict on purpose: no inline scripts and no inline styles, which

@@ -152,6 +152,10 @@ test('the header and redirect rules are host-portable, not Netlify-only', async 
   const toml = await (await page.request.get('/netlify.toml')).text();
   const headers = await (await page.request.get('/_headers')).text();
   const redirects = await (await page.request.get('/_redirects')).text();
+  // Vercel reads neither _headers nor netlify.toml, so it gets its own file.
+  const vercel = JSON.parse(await (await page.request.get('/vercel.json')).text());
+  const vercelHeaders = vercel.headers.flatMap((h) => h.headers.map((x) => x.key + ': ' + x.value)).join('\n');
+  const vercelSources = vercel.headers.map((h) => h.source).join('\n');
 
   // the CSP, the security headers and both cache policies travel with the site
   for (const rule of ["default-src 'self'", 'X-Frame-Options', 'X-Content-Type-Options',
@@ -160,15 +164,41 @@ test('the header and redirect rules are host-portable, not Netlify-only', async 
                       'max-age=0, must-revalidate']) {
     expect(headers, `_headers is missing ${rule}`).toContain(rule);
     expect(toml, `netlify.toml is missing ${rule}`).toContain(rule);
+    expect(vercelHeaders, `vercel.json is missing ${rule}`).toContain(rule);
   }
   // the unversioned filenames are all pinned to revalidate in both files
   for (const path of ['/index.html', '/data/site.js', '/assets/css/', '/assets/js/']) {
     expect(headers, `_headers does not cover ${path}`).toContain(path);
     expect(toml, `netlify.toml does not cover ${path}`).toContain(path);
+    expect(vercelSources, `vercel.json does not cover ${path}`).toContain(path);
   }
+  /* Vercel serves index.html at "/" and matches header rules on the request
+     path, so a rule written only for /index.html never fires on the front
+     page — which is the one document that must never be cached stale. */
+  expect(vercel.headers.find((h) => h.source === '/'),
+    'vercel.json has no rule for "/" itself').toBeTruthy();
   // and the old page URLs still redirect
   for (const from of ['/home.html', '/contact.html', '/links.html']) {
     expect(redirects, `_redirects is missing ${from}`).toContain(from);
     expect(toml, `netlify.toml is missing ${from}`).toContain(from);
+    expect(vercel.redirects.map((r) => r.source), `vercel.json is missing ${from}`).toContain(from);
   }
+});
+
+/* The markdown in this repo is the shop's working notes, and one of them is an
+   open consent question about identifiable photographs. Every host the site
+   can land on has to keep them off the public site — by redirect where the
+   files are deployed, by not deploying them at all on Vercel. */
+test('the shop\u2019s working notes are not part of the website', async ({ page }) => {
+  const toml = await (await page.request.get('/netlify.toml')).text();
+  const redirects = await (await page.request.get('/_redirects')).text();
+  const ignore = await (await page.request.get('/.vercelignore')).text();
+
+  for (const doc of ['README.md', 'AUDIT.md', 'OPEN-QUESTIONS.md', 'LICENSES.md']) {
+    expect(redirects, `_redirects does not cover ${doc}`).toContain('/' + doc);
+    expect(toml, `netlify.toml does not cover ${doc}`).toContain('/' + doc);
+    expect(ignore, `.vercelignore does not cover ${doc}`).toContain(doc);
+  }
+  // and the archival masters are 65 MB that no page links to
+  expect(ignore, '.vercelignore should keep photos/ out of the deploy').toContain('photos/');
 });

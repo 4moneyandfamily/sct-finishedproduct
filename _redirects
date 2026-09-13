@@ -4,3 +4,13 @@
 /home.html     /       301
 /contact.html  /#book  301
 /links.html    /#crew  301
+
+# The working notes are not part of the website. OPEN-QUESTIONS.md in
+# particular discusses an unresolved consent question about identifiable
+# photographs, and it has no business sitting at a guessable URL on the shop's
+# own domain. Vercel drops these at upload time via .vercelignore; Netlify and
+# Cloudflare Pages have no equivalent, so they get sent to the front page.
+/README.md          /   301
+/AUDIT.md           /   301
+/OPEN-QUESTIONS.md  /   301
+/LICENSES.md        /   301

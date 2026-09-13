@@ -1,0 +1,30 @@
+# What Vercel must not upload. Same idea as .gitignore, but for the deploy:
+# everything listed here stays in the repo and never reaches the CDN.
+#
+# Two reasons something is on this list.
+#
+# Weight. photos/ is 65 MB of full-resolution archival masters that no page
+# ever links to — visitors are served the WebP derivatives in assets/g/, which
+# is the only image directory the site references. Shipping the masters would
+# more than double every deploy for files nobody fetches.
+#
+# Not the public's business. The markdown in this repo is the shop's working
+# notes, and OPEN-QUESTIONS.md in particular discusses an unresolved consent
+# question about identifiable photographs. It has no reason to sit at a
+# guessable URL on the shop's own domain. netlify.toml and _redirects carry a
+# redirect for the same files, because Netlify and Cloudflare Pages have no
+# equivalent of this file.
+
+photos/
+tests/
+tools/
+playwright.config.js
+package.json
+package-lock.json
+AUDIT.md
+LICENSES.md
+OPEN-QUESTIONS.md
+README.md
+node_modules/
+test-results/
+playwright-report/

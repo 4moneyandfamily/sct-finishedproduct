@@ -17,7 +17,7 @@ window.SITE = {
 
      Bump it with any change that should be visible to a visitor. Format is
      the date, plus a letter if there is more than one in a day. */
-  build: "2026-09-13e",
+  build: "2026-09-13f",
 
   /* Every address where this site serves the public. Add one here, in this
      file, the moment the site goes up somewhere new — it needs no code change
@@ -31,11 +31,21 @@ window.SITE = {
 
      Matched exactly, on purpose, so preview subdomains
      (deploy-preview-7--*.netlify.app, *.pages.dev previews, branch deploys)
-     and lookalike hostnames never qualify by accident. */
+     and lookalike hostnames never qualify by accident.
+
+     Being on this list does not mean the host delivers the booking. Only
+     Netlify has a form backend; on Vercel and Cloudflare Pages the POST has
+     nowhere to land, so it fails and the visitor gets the pre-written email
+     and the phone number instead — the "one more tap" panel, which is the
+     designed path when no form service is switched on and is why this works
+     at all on a host that has none. What the list actually decides is whether
+     a real customer is told "nothing was sent", and on an address the shop
+     hands out that answer must never be yes. */
   liveHosts: [
     "sanclementetattoo.com",
     "www.sanclementetattoo.com",
-    "sc-tattoo.netlify.app"
+    "sc-tattoo.netlify.app",
+    "sct-finishedproduct.vercel.app"
   ],
 
   shop: {
