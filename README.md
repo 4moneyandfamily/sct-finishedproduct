@@ -151,13 +151,20 @@ The gallery is curated, not archive-ordered. Two lists near the bottom of
 - **`featured`** pins projects, in exactly that order, to the top of the
   gallery. 24 entries fills the first page: 12 rows on a phone, 8 on a tablet,
   6 on a desktop. This is the prime real estate, so lead with full backs, full
-  sleeves and clean, well-lit photographs of finished work.
+  sleeves and clean, well-lit photographs of finished work. The list may run
+  longer than a page — it orders the whole wall, not just the front of it, so
+  entries past 24 decide page two and lead whichever filter they belong to.
+  Brother Greg's prints sit at 25 to 34 for that reason: behind the tattoo work
+  on the front page, ahead of everything else inside Paintings.
 - **`buried`** sinks projects to the very end, which also puts them last inside
   whichever style filter they belong to. Used for work that is real but sits
   awkwardly in its category: stencil-style design plates, designs still on
-  paper, a pencil drawing, apparel print art, and one sleeve whose palette is
-  disputed. Sinking beats recategorising — nothing is hidden or relabelled,
-  it just stops taking the good slots.
+  paper, a pencil drawing, apparel print art, one sleeve whose palette is
+  disputed, and three paintings whose only problem is the photograph — phone
+  snaps on a desk or through glass, 250 to 480 pixels wide. Sinking beats
+  recategorising — nothing is hidden or relabelled, it just stops taking the
+  good slots. Shoot one of those three properly and lifting its id out of the
+  list is the whole change.
 
 Anything in neither list keeps its archive position in between. To promote a
 piece, add its `id` to `featured` where you want it and drop one off the
