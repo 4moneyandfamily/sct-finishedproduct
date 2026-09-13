@@ -17,7 +17,7 @@ window.SITE = {
 
      Bump it with any change that should be visible to a visitor. Format is
      the date, plus a letter if there is more than one in a day. */
-  build: "2026-09-13g",
+  build: "2026-09-13h",
 
   /* Every address where this site serves the public. Add one here, in this
      file, the moment the site goes up somewhere new — it needs no code change
@@ -182,6 +182,23 @@ window.SITE = {
     "set-goddess-bodysuit",       // Goddess full-back bodysuit
     "p-r4-chas-chas-11",          // Rose tattoo
     "set-greg-religious-flash",   // Religious flash painting — the owner's own work
+
+    /* Brother Greg's prints, best first. They rank here for a plain reason:
+       they are the only paintings on the wall photographed properly rather
+       than snapped on a desk, and they are the ones a visitor can buy. Sitting
+       behind the tattoo work on the front page is deliberate — this is a
+       tattoo shop — but inside the Paintings filter they lead, which is where
+       anyone who came for the prints is looking. */
+    "p-greg-print-mary",               // San Clemente Mary
+    "p-greg-print-panther-snake",      // Panther and snake
+    "p-greg-print-hannya-snake",       // Hannya mask and snake
+    "p-greg-print-god-family-country", // God, Family, Country
+    "p-greg-print-pharaohs-horses",    // Pharaoh's Horses
+    "p-greg-print-chalice",            // Chalice and horned skull
+    "p-greg-print-dagger-heart",       // Dagger through a heart, with swallows
+    "p-greg-print-give-me-liberty",    // Give Me Liberty Or Give Me Death
+    "p-greg-print-reaper-chopper",     // Reaper on a chopper, full moon
+    "p-greg-print-city-chopper",       // Skeleton on a chopper, city behind
   ],
 
   buried: [
@@ -197,6 +214,15 @@ window.SITE = {
     "p-orig-ig-193848",           // Eagle backpiece design on paper
     "p-r2-james-james-07",        // Dragon pencil drawing
     "p-r4-chas-chas-20",          // Ship linework flash
+
+    /* Paintings the shop photographed on a phone, on a desk or through glass,
+       at 250 to 480 pixels. The work is good and stays on the wall; the
+       photographs are the weakest thing on it and sit at the end of Paintings
+       until someone shoots them properly. Replace the file and lift the id out
+       of this list — nothing else needs to change. */
+    "p-orig-os-5261245",          // Dragon panel, shot at an angle through glass
+    "p-orig-os-5261261",          // Tiger and lady, phone snap on a table
+    "p-orig-os-5261244",          // Dagger flash sheet, phone snap
   ],
 
   /* One entry per tattoo (or painting). Multiple photos of the same piece go
@@ -300,7 +326,6 @@ window.SITE = {
         { f: "r5-james-21.jpg", w: 833, h: 571, cap: "Lady head with pearls, healed" },
       ] },
     { id: "p-orig-ig-194153", style: "Color", artistId: "james", title: "Lady head with flower and skull", photos: [{ f: "orig-ig-194153.jpg", w: 1080, h: 1254, cap: "Lady head with flower and skull" }] },
-    { id: "p-orig-os-5261263", style: "Paintings", artistId: null, title: "Skeleton motorcycle", photos: [{ f: "orig-os-5261263.jpg", w: 640, h: 480, cap: "Skeleton motorcycle" }] },
     { id: "p-orig-os-5261262", style: "Paintings", artistId: null, title: "'Blessed' skull and heart flash panel", photos: [{ f: "orig-os-5261262.jpg", w: 334, h: 480, cap: "'Blessed' skull and heart flash panel" }] },
     { id: "p-orig-os-5261261", style: "Paintings", artistId: null, title: "Tiger and lady", photos: [{ f: "orig-os-5261261.jpg", w: 474, h: 476, cap: "Tiger and lady" }] },
     { id: "p-orig-os-5261260", style: "Black & grey", artistId: null, title: "Anchor and chainmail", photos: [{ f: "orig-os-5261260.jpg", w: 479, h: 479, cap: "Anchor and chainmail" }] },
@@ -318,7 +343,7 @@ window.SITE = {
     { id: "p-orig-os-5261248", style: "Color", artistId: null, title: "Ship back piece", photos: [{ f: "orig-os-5261248.jpg", w: 382, h: 478, cap: "Ship back piece" }] },
     { id: "p-orig-os-5261247", style: "Color", artistId: null, title: "Pinup with snake", photos: [{ f: "orig-os-5261247.jpg", w: 361, h: 445, cap: "Pinup with snake" }] },
     { id: "p-orig-os-5261246", style: "Color", artistId: null, title: "Back piece with skull and roses", photos: [{ f: "orig-os-5261246.jpg", w: 368, h: 477, cap: "Back piece with skull and roses" }] },
-    { id: "p-orig-os-5261245", style: "Paintings", artistId: null, title: "Dragon panel", photos: [{ f: "orig-os-5261245.jpg", w: 257, h: 480, cap: "Dragon panel" }] },
+    { id: "p-orig-os-5261245", style: "Paintings", artistId: null, title: "Dragon panel", photos: [{ f: "orig-os-5261245.jpg", w: 229, h: 446, cap: "Dragon panel" }] },
     { id: "p-orig-os-5261244", style: "Paintings", artistId: null, title: "Dagger flash sheet", photos: [{ f: "orig-os-5261244.jpg", w: 356, h: 480, cap: "Dagger flash sheet" }] },
     { id: "p-orig-os-5261243", style: "Paintings", artistId: "brian", title: "Horse flash painting", photos: [{ f: "orig-os-5261243.jpg", w: 585, h: 480, cap: "Horse flash painting" }] },
     { id: "p-orig-os-4503447", style: "Color", artistId: "thad", title: "Revolver with lettering", photos: [{ f: "orig-os-4503447.jpg", w: 480, h: 640, cap: "Revolver with lettering" }] },
@@ -356,7 +381,6 @@ window.SITE = {
         { f: "r2-greg-greg-02.jpg", w: 1080, h: 1212, cap: "Religious flash painting, flat on the wall" },
         { f: "r2-greg-greg-01.jpg", w: 1080, h: 1108, cap: "Religious flash painting, framed and hung" },
       ] },
-    { id: "p-r2-greg-greg-08", style: "Paintings", artistId: "greg", title: "Goblet/skull chalice flash painting", photos: [{ f: "r2-greg-greg-08.jpg", w: 900, h: 1283, cap: "Goblet/skull chalice flash painting" }] },
     { id: "p-r2-greg-greg-09", style: "Paintings", artistId: "greg", title: "'Blessed' skull and mermaid flash painting", photos: [{ f: "r2-greg-greg-09.jpg", w: 909, h: 1440, cap: "'Blessed' skull and mermaid flash painting" }] },
     { id: "p-r2-james-james-01", style: "Paintings", artistId: "james", title: "Eagle and dragon flash sheets", photos: [{ f: "r2-james-james-01.jpg", w: 1080, h: 1157, cap: "Eagle and dragon flash sheets" }] },
     { id: "p-r2-james-james-02", style: "Paintings", artistId: "james", title: "Tiger and dragon flash sheets", photos: [{ f: "r2-james-james-02.jpg", w: 1080, h: 1157, cap: "Tiger and dragon flash sheets" }] },
@@ -478,7 +502,7 @@ window.SITE = {
        data/site.js once, and saying it ten times down the Paintings filter
        would turn the gallery into a catalogue. The footer says it once. */
     { id: "p-greg-print-give-me-liberty", style: "Paintings", artistId: "greg", title: "Give Me Liberty Or Give Me Death", photos: [{ f: "greg-print-give-me-liberty.jpg", w: 1595, h: 2048, cap: "Painting: an eagle with spread wings over a striped shield, a snake coiled around a dagger either side, and 'Give Me Liberty Or Give Me Death' in blackletter" }] },
-    { id: "p-greg-print-god-family-country", style: "Paintings", artistId: "greg", title: "God, Family, Country", photos: [{ f: "greg-print-god-family-country.jpg", w: 2048, h: 1664, cap: "Painting: an eagle in flight across a field of stars and stripes, an arrow behind it and a cross in a gold sun, with a banner reading God, Family, Country down the left edge" }] },
+    { id: "p-greg-print-god-family-country", style: "Paintings", artistId: "greg", title: "God, Family, Country", photos: [{ f: "greg-print-god-family-country.jpg", w: 1664, h: 2048, cap: "Painting: an eagle with spread wings over crossed arrows and two flag swags, a cross in a gold sun above it, and a banner along the bottom reading God, Family, Country" }] },
     { id: "p-greg-print-hannya-snake", style: "Paintings", artistId: "greg", title: "Hannya mask and snake", photos: [{ f: "greg-print-hannya-snake.jpg", w: 1638, h: 2048, cap: "Painting: a horned hannya mask in yellow and orange with a snake coiling through it, inside a rainbow Greek-key border" }] },
     { id: "p-greg-print-panther-snake", style: "Paintings", artistId: "greg", title: "Panther and snake", photos: [{ f: "greg-print-panther-snake.jpg", w: 1690, h: 2048, cap: "Painting: a black panther climbing with a snake wrapped around it, on a red patterned ground framed by rope and chain" }] },
     { id: "p-greg-print-pharaohs-horses", style: "Paintings", artistId: "greg", title: "Pharaoh\u2019s Horses", photos: [{ f: "greg-print-pharaohs-horses.jpg", w: 2048, h: 1664, cap: "Painting: two horse heads in black and grey inside a gold and orange ring, carved scrollwork in the corners and a flower either side" }] },

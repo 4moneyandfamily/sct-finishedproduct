@@ -122,9 +122,15 @@ if (SITE) {
     const dupes = list.filter((v, i) => list.indexOf(v) !== i);
     if (dupes.length) err(`SITE.${name} lists ${[...new Set(dupes)].join(', ')} more than once`);
   }
-  // 24 is one full page; more than that and the tail never gets seen as featured
-  if (Array.isArray(SITE.featured) && SITE.featured.length > 24) {
-    warn(`SITE.featured has ${SITE.featured.length} entries but only 24 fit the first page`);
+  /* 24 is one full page. This used to warn past 24 on the grounds that the
+     tail "never gets seen as featured", which is not what featured does — it
+     orders the whole wall, so entries past the first page still decide page
+     two and still lead whichever filter they belong to. Brother Greg's prints
+     sit at 25 to 34 for exactly that reason: behind the tattoo work on the
+     front page, ahead of everything else inside Paintings.
+     Two pages is where it stops being an order and starts being the archive. */
+  if (Array.isArray(SITE.featured) && SITE.featured.length > 48) {
+    warn(`SITE.featured has ${SITE.featured.length} entries, more than two pages of wall`);
   }
   // --- 7c. style must not contradict the words on the card ---------------
   // The archive shipped with colour pieces under "Black & grey" and pure

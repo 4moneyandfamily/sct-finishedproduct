@@ -134,7 +134,11 @@ test('the front page leads with the curated picks, in order', async ({ page }) =
   const S = await site(page);
   const shown = await page.$$eval('.card', els => els.map(e => e.id.replace(/^card-/, '')));
   expect(shown).toHaveLength(24);
-  expect(shown).toEqual(S.featured);
+  /* featured may run longer than one page. It orders the whole wall, not just
+     the front of it — Brother Greg's prints sit just past the fold so they
+     lead the Paintings filter without displacing the tattoo work up front. So
+     the front page is the first page of that list, not the whole of it. */
+  expect(shown).toEqual(S.featured.slice(0, 24));
 });
 
 test('the design plates are off the front page and sunk to the very end', async ({ page }) => {
@@ -323,7 +327,11 @@ test('work the shop flagged as not-a-painting sits at the end of Paintings', asy
   // inside the Paintings filter they must all come after the genuine paintings
   const paintings = (await order(page)).filter(p => p.style === 'Paintings').map(p => p.id);
   const firstFlagged = paintings.findIndex(id => flagged.includes(id));
-  const lastClean = paintings.reduce((acc, id, i) => (flagged.includes(id) ? acc : i), -1);
+  /* Measured against everything not sunk, rather than everything not in the
+     list above: the shop has since sunk a few paintings for being badly
+     photographed rather than for being design plates, and those sit down here
+     too. What must hold is that nothing sunk outranks a painting that is not. */
+  const lastClean = paintings.reduce((acc, id, i) => (S.buried.includes(id) ? acc : i), -1);
   expect(firstFlagged).toBeGreaterThan(lastClean);
 });
 
