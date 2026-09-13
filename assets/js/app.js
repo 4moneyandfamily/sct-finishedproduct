@@ -338,6 +338,11 @@
   }
 
   function afterClose() {
+    /* Escape shuts the <dialog> at once but queues this event, so a deep link
+       can reopen the viewer before we run. An open dialog means this event is
+       stale: the reopen already set everything the tidy-up below would reset,
+       and wiping the rail now would leave it open and blank. */
+    if (dlg && dlg.open) return;
     document.documentElement.classList.remove('viewer-open');
     window.scrollTo(0, scrollY);
     rail.innerHTML = '';
@@ -451,15 +456,11 @@
     $('footer-ig').innerHTML =
       '<li><a href="' + esc(SITE.shop.instagram) + '">@' + esc(SITE.shop.instagramHandle) + '</a> · the shop</li>' +
       SITE.artists.map(function (a) {
-        /* An artist who sells prints gets the store hung off their own line,
-           so the only place it can appear is next to the name it belongs to. */
         var store = a.store ? ' · <a href="' + esc(a.store) + '" rel="noopener">prints</a>' : '';
         return '<li><a href="' + esc(a.instagram) + '">@' + esc(a.handle) + '</a> · ' + esc(a.name) + store + '</li>';
       }).join('');
 
-    /* The footer button is in the markup with the store address already on it,
-       so it works with JavaScript off. This only keeps it honest if the address
-       in data/site.js ever changes. */
+    // The button has the address in the markup too, so it works scripts-off.
     var storeLink = $('store-link');
     if (storeLink && SITE.shop.store) storeLink.href = SITE.shop.store;
 

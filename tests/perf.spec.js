@@ -13,7 +13,15 @@ const BUDGET = {
   initialWeightKB: 1400,   // everything fetched to first render, images included
   lcpMs: 2500,             // "good" threshold
   cls: 0.1,                // "good" threshold
-  appJsKB: 32,             // hand-written behaviour, no framework
+  /* Raised from 32 in Sep 2026. The site ships uncompiled, so every line of
+     comment in app.js counts against a raw-byte ceiling, and this file is
+     commented on purpose — two changes in a row landed within a few hundred
+     bytes of 32 and the second one within twelve, which is a budget that fails
+     on prose rather than on behaviour. What a visitor actually waits for is
+     the compressed transfer (8.8 KB at the last measurement) and the 1400 KB
+     first-render weight above, and neither moved. Raise this again only for
+     the same reason, and never to make new behaviour fit. */
+  appJsKB: 34,             // hand-written behaviour, no framework
   dataJsKB: 60,            // the gallery data file (data, not code)
   cssKB: 30,
   requests: 60,

@@ -17,7 +17,7 @@ window.SITE = {
 
      Bump it with any change that should be visible to a visitor. Format is
      the date, plus a letter if there is more than one in a day. */
-  build: "2026-09-13d",
+  build: "2026-09-13e",
 
   /* Every address where this site serves the public. Add one here, in this
      file, the moment the site goes up somewhere new — it needs no code change
@@ -458,6 +458,25 @@ window.SITE = {
     { id: "p-r5-james-20", style: "Color", artistId: "james", title: "Snake on the stomach, red and black", photos: [{ f: "r5-james-20.jpg", w: 833, h: 944, cap: "Snake on the stomach, red and black" }] },
     { id: "p-r5-james-22", style: "Black & grey", artistId: "james", title: "Eagle chest piece, black and grey", photos: [{ f: "r5-james-22.jpg", w: 833, h: 660, cap: "Eagle chest piece, black and grey" }] },
     { id: "p-r5-james-23", style: "Color", artistId: "james", title: "Chrysanthemum, color", photos: [{ f: "r5-james-23.jpg", w: 826, h: 677, cap: "Chrysanthemum, color" }] },
+
+    /* The prints. These are the paintings Brother Greg sells, shot flat, and
+       they are the reason the footer carries a store button at all.
+
+       They are filed and credited exactly like the rest of his painted work,
+       because that is what they are. What is deliberately NOT here is a buy
+       link on every card: the store address is a shop fact, it lives in
+       data/site.js once, and saying it ten times down the Paintings filter
+       would turn the gallery into a catalogue. The footer says it once. */
+    { id: "p-greg-print-give-me-liberty", style: "Paintings", artistId: "greg", title: "Give Me Liberty Or Give Me Death", photos: [{ f: "greg-print-give-me-liberty.jpg", w: 1595, h: 2048, cap: "Painting: an eagle with spread wings over a striped shield, a snake coiled around a dagger either side, and 'Give Me Liberty Or Give Me Death' in blackletter" }] },
+    { id: "p-greg-print-god-family-country", style: "Paintings", artistId: "greg", title: "God, Family, Country", photos: [{ f: "greg-print-god-family-country.jpg", w: 2048, h: 1664, cap: "Painting: an eagle in flight across a field of stars and stripes, an arrow behind it and a cross in a gold sun, with a banner reading God, Family, Country down the left edge" }] },
+    { id: "p-greg-print-hannya-snake", style: "Paintings", artistId: "greg", title: "Hannya mask and snake", photos: [{ f: "greg-print-hannya-snake.jpg", w: 1638, h: 2048, cap: "Painting: a horned hannya mask in yellow and orange with a snake coiling through it, inside a rainbow Greek-key border" }] },
+    { id: "p-greg-print-panther-snake", style: "Paintings", artistId: "greg", title: "Panther and snake", photos: [{ f: "greg-print-panther-snake.jpg", w: 1690, h: 2048, cap: "Painting: a black panther climbing with a snake wrapped around it, on a red patterned ground framed by rope and chain" }] },
+    { id: "p-greg-print-pharaohs-horses", style: "Paintings", artistId: "greg", title: "Pharaoh\u2019s Horses", photos: [{ f: "greg-print-pharaohs-horses.jpg", w: 2048, h: 1664, cap: "Painting: two horse heads in black and grey inside a gold and orange ring, carved scrollwork in the corners and a flower either side" }] },
+    { id: "p-greg-print-mary", style: "Paintings", artistId: "greg", title: "San Clemente Mary", photos: [{ f: "greg-print-mary.jpg", w: 1595, h: 2048, cap: "Painting: a veiled Madonna in a beaded halo with rays, roses and crosses around her, two kneeling skeletons below flanking a red heart with a cross" }] },
+    { id: "p-greg-print-dagger-heart", style: "Paintings", artistId: "greg", title: "Dagger through a heart, with swallows", photos: [{ f: "greg-print-dagger-heart.jpg", w: 1638, h: 2048, cap: "Painting: an ornate dagger driven through a heart banked with roses, a swallow either side above it, spiderwebs in the corners" }] },
+    { id: "p-greg-print-chalice", style: "Paintings", artistId: "greg", title: "Chalice and horned skull", photos: [{ f: "greg-print-chalice.jpg", w: 2048, h: 1459, cap: "Painting: a red and gold chalice tipped toward a horned skull, set in an ornamental border of rosettes and flowers" }] },
+    { id: "p-greg-print-city-chopper", style: "Paintings", artistId: "greg", title: "Skeleton on a chopper, city behind", photos: [{ f: "greg-print-city-chopper.jpg", w: 2048, h: 1664, cap: "Painting in black and gold: a skeleton riding a long-forked chopper down a winding road out of a city skyline, small devils running alongside" }] },
+    { id: "p-greg-print-reaper-chopper", style: "Paintings", artistId: "greg", title: "Reaper on a chopper, full moon", photos: [{ f: "greg-print-reaper-chopper.jpg", w: 2048, h: 1459, cap: "Painting in dark green and gold: a hooded reaper hunched over a chopper, a full moon and bare branches behind, a house on a hill to the right" }] },
 
     /* The three ex-Lettering pieces. They are colour work with script in
        them, not a category of their own, and they sit last in projects so
