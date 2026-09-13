@@ -287,6 +287,9 @@ section > .wrap > .muted:first-of-type { margin-top: .9rem; }
    <button> so they start out inline. */
 .card-shot { display: block; position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: var(--ink-3); }
 .card-shot img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+/* A cover wider than the tile is shown whole on the ground colour rather
+   than cropped to fill it. Half a painting is not a smaller painting. */
+.card-shot.is-wide img { object-fit: contain; object-position: center; }
 /* Fixed caption height on purpose. Left to size itself, the row heights change
    the moment the webfonts swap in, every grid row resizes, and the browser's
    scroll anchoring drags the page. Locking it to two lines keeps layout stable

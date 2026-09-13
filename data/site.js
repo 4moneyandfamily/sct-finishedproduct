@@ -17,7 +17,7 @@ window.SITE = {
 
      Bump it with any change that should be visible to a visitor. Format is
      the date, plus a letter if there is more than one in a day. */
-  build: "2026-09-13f",
+  build: "2026-09-13g",
 
   /* Every address where this site serves the public. Add one here, in this
      file, the moment the site goes up somewhere new — it needs no code change
@@ -484,9 +484,9 @@ window.SITE = {
     { id: "p-greg-print-pharaohs-horses", style: "Paintings", artistId: "greg", title: "Pharaoh\u2019s Horses", photos: [{ f: "greg-print-pharaohs-horses.jpg", w: 2048, h: 1664, cap: "Painting: two horse heads in black and grey inside a gold and orange ring, carved scrollwork in the corners and a flower either side" }] },
     { id: "p-greg-print-mary", style: "Paintings", artistId: "greg", title: "San Clemente Mary", photos: [{ f: "greg-print-mary.jpg", w: 1595, h: 2048, cap: "Painting: a veiled Madonna in a beaded halo with rays, roses and crosses around her, two kneeling skeletons below flanking a red heart with a cross" }] },
     { id: "p-greg-print-dagger-heart", style: "Paintings", artistId: "greg", title: "Dagger through a heart, with swallows", photos: [{ f: "greg-print-dagger-heart.jpg", w: 1638, h: 2048, cap: "Painting: an ornate dagger driven through a heart banked with roses, a swallow either side above it, spiderwebs in the corners" }] },
-    { id: "p-greg-print-chalice", style: "Paintings", artistId: "greg", title: "Chalice and horned skull", photos: [{ f: "greg-print-chalice.jpg", w: 2048, h: 1459, cap: "Painting: a red and gold chalice tipped toward a horned skull, set in an ornamental border of rosettes and flowers" }] },
+    { id: "p-greg-print-chalice", style: "Paintings", artistId: "greg", title: "Chalice and horned skull", photos: [{ f: "greg-print-chalice.jpg", w: 1459, h: 2048, cap: "Painting: a red and gold chalice tipped toward a horned skull, set in an ornamental border of rosettes and flowers" }] },
     { id: "p-greg-print-city-chopper", style: "Paintings", artistId: "greg", title: "Skeleton on a chopper, city behind", photos: [{ f: "greg-print-city-chopper.jpg", w: 2048, h: 1664, cap: "Painting in black and gold: a skeleton riding a long-forked chopper down a winding road out of a city skyline, small devils running alongside" }] },
-    { id: "p-greg-print-reaper-chopper", style: "Paintings", artistId: "greg", title: "Reaper on a chopper, full moon", photos: [{ f: "greg-print-reaper-chopper.jpg", w: 2048, h: 1459, cap: "Painting in dark green and gold: a hooded reaper hunched over a chopper, a full moon and bare branches behind, a house on a hill to the right" }] },
+    { id: "p-greg-print-reaper-chopper", style: "Paintings", artistId: "greg", title: "Reaper on a chopper, full moon", photos: [{ f: "greg-print-reaper-chopper.jpg", w: 1459, h: 2048, cap: "Painting in dark green and gold: a hooded reaper hunched over a chopper, a full moon and bare branches behind, a house on a hill to the right" }] },
 
     /* The three ex-Lettering pieces. They are colour work with script in
        them, not a category of their own, and they sit last in projects so

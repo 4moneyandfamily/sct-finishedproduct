@@ -121,6 +121,15 @@ broken images or a 4 MB photo on someone's phone plan.
   the right ones; `npm run lint` fails if they drift.
 - **Never serve from `photos/`.** Always `assets/g/`. The app builds those
   paths itself, so this only goes wrong if someone hand-writes an `<img>`.
+- **Check the orientation before you paste the block.** `add-photos.mjs` bakes
+  in the rotation a camera recorded, and a file that carries no such tag is
+  taken at its word — two of Brother Greg's prints arrived a quarter turn over
+  with nothing in the file to say so, and went up that way. Look at the card.
+- **A cover wider than it is tall is shown whole, not cropped.** The tile is
+  4:5 and crops to fill, which suits a photograph of a tattoo and takes a third
+  off a painting shot landscape. `app.js` marks those covers and they sit
+  letterboxed on the ground colour instead. Nothing to set by hand; it reads
+  the `w`/`h` you pasted, which is one more reason not to edit those.
 - **Do not retouch the tattoos.** No colour "improvement", no sharpening, no
   AI upscaling, no generated fill. Rotation, crop, resize and re-encode only.
   It is someone's tattoo and an artist's portfolio.

@@ -193,12 +193,18 @@
     var cover = p.photos[0];
     var n = p.photos.length;
     var veiled = p.sensitive && !revealed[p.id];
+    /* The 4:5 tile crops to fill, which suits a photograph of a tattoo and
+       ruins a painting shot wider than it is tall: a third of the piece is cut
+       off, and what survives is painted half again wider than the tile, so the
+       browser fetches too small a file for it and the card goes soft. Covers
+       wider than the tile are shown whole instead. */
+    var wide = cover.w > cover.h;
     var label = veiled
       ? 'Show ' + p.title + ' — contains nudity'
       : p.title + (n > 1 ? ', ' + n + ' photos' : '') + '. Open photo viewer';
     return '<button class="card" type="button" data-i="' + i + '" id="card-' + esc(p.id) + '"' +
       ' aria-label="' + esc(label) + '">' +
-      '<span class="card-shot' + (veiled ? ' is-veiled' : '') + '">' +
+      '<span class="card-shot' + (wide ? ' is-wide' : '') + (veiled ? ' is-veiled' : '') + '">' +
       '<img src="' + esc(fallbackSrc(cover)) + '" srcset="' + esc(srcset(cover)) + '"' +
       ' sizes="(min-width:1280px) 295px, (min-width:1100px) 23vw, (min-width:700px) 31vw, 45vw"' +
       ' width="' + cover.w + '" height="' + cover.h + '"' +
