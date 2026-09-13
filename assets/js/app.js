@@ -94,12 +94,24 @@
     return av.length ? av : [photo.w];
   }
   function base(photo) { return 'assets/g/' + photo.f.replace(/\.jpg$/, ''); }
+
+  /* Every derivative URL carries the build stamp, and it has to.
+     assets/g is served immutable for a year, which is true of a file nobody
+     touches and a lie about one that gets corrected: rotating a master
+     rewrites the bytes behind a filename that does not change, so a visitor
+     who saw the sideways version of a painting would go on seeing it until
+     2027. Three prints were rotated the day this went in, and that is exactly
+     how it showed up — the fix deployed, the shop's own phone kept the crooked
+     one. The stamp moves the URL when the site moves, which is the promise
+     immutable was making anyway. */
+  var GV = '?v=' + encodeURIComponent(SITE && SITE.build ? SITE.build : '0');
+  function gsrc(photo, w) { return base(photo) + '-' + w + '.webp' + GV; }
   function srcset(photo) {
-    return variants(photo).map(function (w) { return base(photo) + '-' + w + '.webp ' + w + 'w'; }).join(', ');
+    return variants(photo).map(function (w) { return gsrc(photo, w) + ' ' + w + 'w'; }).join(', ');
   }
   function fallbackSrc(photo) {
     var v = variants(photo);
-    return base(photo) + '-' + v[v.length - 1] + '.webp';
+    return gsrc(photo, v[v.length - 1]);
   }
   /* Alt text describes the work. Credit is in the caption next to the card, so
      repeating it in alt would just be noise for a screen reader. */
@@ -309,7 +321,7 @@
     $('v-dots').innerHTML = single ? '' : project.photos.map(function (ph, i) {
       return '<li><button type="button" data-i="' + i + '" aria-current="' + (i === index) + '"' +
         ' aria-label="Photo ' + (i + 1) + '">' +
-        '<img src="' + esc(base(ph) + '-' + variants(ph)[0] + '.webp') + '" width="40" height="40" alt="" loading="lazy"></button></li>';
+        '<img src="' + esc(gsrc(ph, variants(ph)[0])) + '" width="40" height="40" alt="" loading="lazy"></button></li>';
     }).join('');
 
     /* The page scrolls smoothly, so a card tapped while a jump is still

@@ -128,11 +128,12 @@ test.describe('performance budgets', () => {
     let resolved = 0;
     for (const i of imgs) {
       expect(i.src, 'must not point at photos/').not.toContain('photos/');
-      expect(i.src).toMatch(/^assets\/g\/.*\.webp$/);
+      // ...?v=<build stamp>, which is what keeps the immutable header honest
+      expect(i.src).toMatch(/^assets\/g\/.*\.webp\?v=[^?]+$/);
       expect(i.srcset).toContain('w');
       expect(i.sizes).toBeTruthy();
       if (i.chosen) {
-        expect(i.chosen, 'browser must pick a webp derivative').toMatch(/\.webp$/);
+        expect(i.chosen, 'browser must pick a webp derivative').toMatch(/\.webp\?v=/);
         resolved++;
       }
     }
@@ -175,4 +176,26 @@ test.describe('performance budgets', () => {
        a real visitor waits for is the first render budget above. */
     expect(perCard).toBeLessThan(55);
   });
+});
+
+/* The cache headers tell browsers to keep assets/g for a year and never
+   revalidate. That is only safe while the URL changes when the bytes do, and
+   the filenames are not content-addressed — so the build stamp on the query is
+   the whole of what makes the header honest. Three prints went up sideways,
+   were corrected, and stayed crooked on a phone that had already seen them.
+   If this test fails, a corrected photo is unreachable for a year. */
+test('every derivative URL carries the build stamp, so a corrected photo can reach people', async ({ page }) => {
+  await page.goto('/');
+  const build = await page.evaluate(() => window.SITE.build);
+  const srcs = await page.$$eval('#grid img, .shop-strip img',
+    els => els.flatMap(e => [e.getAttribute('src'), ...(e.getAttribute('srcset') || '')
+      .split(',').map(s => s.trim().split(/\s+/)[0])]).filter(Boolean));
+  expect(srcs.length).toBeGreaterThan(10);
+  for (const src of srcs) {
+    expect(src, `${src} is not versioned`).toContain('assets/g/');
+    expect(src, `${src} does not carry the build stamp`).toContain('?v=' + build);
+  }
+  // and the header that makes it necessary is still the one being served
+  const headers = await (await page.request.get('/_headers')).text();
+  expect(headers).toContain('max-age=31536000, immutable');
 });

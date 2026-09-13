@@ -72,6 +72,13 @@
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
 
 # Photos and fonts are content-stable: cache them hard.
+#
+# "Immutable" is only true because app.js hangs the build stamp off every
+# assets/g URL. The filenames themselves are not content-addressed, so a
+# corrected photo — a master rotated in place, say — would otherwise sit
+# behind an unchanged URL that every browser has been told to keep for a year.
+# The query makes the URL move when the site does. If you ever serve these
+# paths without going through app.js, this header is a promise you cannot keep.
 [[headers]]
   for = "/assets/g/*"
   [headers.values]
