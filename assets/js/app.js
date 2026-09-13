@@ -451,8 +451,17 @@
     $('footer-ig').innerHTML =
       '<li><a href="' + esc(SITE.shop.instagram) + '">@' + esc(SITE.shop.instagramHandle) + '</a> · the shop</li>' +
       SITE.artists.map(function (a) {
-        return '<li><a href="' + esc(a.instagram) + '">@' + esc(a.handle) + '</a> · ' + esc(a.name) + '</li>';
+        /* An artist who sells prints gets the store hung off their own line,
+           so the only place it can appear is next to the name it belongs to. */
+        var store = a.store ? ' · <a href="' + esc(a.store) + '" rel="noopener">prints</a>' : '';
+        return '<li><a href="' + esc(a.instagram) + '">@' + esc(a.handle) + '</a> · ' + esc(a.name) + store + '</li>';
       }).join('');
+
+    /* The footer button is in the markup with the store address already on it,
+       so it works with JavaScript off. This only keeps it honest if the address
+       in data/site.js ever changes. */
+    var storeLink = $('store-link');
+    if (storeLink && SITE.shop.store) storeLink.href = SITE.shop.store;
 
     $('artist').innerHTML = '<option value="">No preference</option>' +
       SITE.artists.map(function (a) { return '<option value="' + esc(a.name) + '">' + esc(a.name) + '</option>'; }).join('');

@@ -179,6 +179,14 @@ One exception: the address, phone, geo and opening hours also appear in the
 JSON-LD block at the bottom of `index.html`, because search engines need them
 in the HTML itself. `tests/seo.spec.js` fails if the two ever disagree.
 
+The print store is the same kind of exception, for the same reason in reverse.
+`shop.store` in `data/site.js` is the address of record, and an artist who
+sells prints carries their own `store` so the link renders on their line in the
+footer Instagram list. The footer button also has the address written into
+`index.html` so it still works with JavaScript off; the script only overwrites
+it from the data file on load, which means changing the address in one place
+is still enough, but grep for the old one before you assume it is gone.
+
 ### Cleaning screenshot chrome off a master
 
 Most of this archive arrived as Instagram post screenshots, so a new photo very
