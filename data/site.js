@@ -17,7 +17,7 @@ window.SITE = {
 
      Bump it with any change that should be visible to a visitor. Format is
      the date, plus a letter if there is more than one in a day. */
-  build: "2026-09-13h",
+  build: "2026-09-13i",
 
   /* Every address where this site serves the public. Add one here, in this
      file, the moment the site goes up somewhere new — it needs no code change
@@ -203,9 +203,7 @@ window.SITE = {
 
   buried: [
     "p-orig-ig-193745",          // black-and-white graphic plate, not a painting
-    "p-orig-ig-194017",          // apparel print art, not a painting
     "p-orig-os-5261262",         // engraved-style graphic panel rather than painted flash
-    "p-r2-greg-greg-09",         // same engraved-style family as the panel above
     "p-orig-ig-193943",          // the shop does not read this as black and grey
     "p-orig-ig-193739",           // Don't Tread On Me design plate
     "p-orig-ig-193742",           // F-Around and Find Out design plate
@@ -283,7 +281,6 @@ window.SITE = {
         { f: "r2-brian-brian-06.jpg", w: 1080, h: 1267, cap: "Mahakala stomach piece" },
       ] },
     { id: "p-orig-ig-194010", style: "Traditional", artistId: "thad", title: "Black panther leg piece", photos: [{ f: "orig-ig-194010.jpg", w: 1080, h: 1174, cap: "Black panther leg piece" }] },
-    { id: "p-orig-ig-194017", style: "Paintings", artistId: "greg", title: "Dagger, swallows and roses shirt art", photos: [{ f: "orig-ig-194017.jpg", w: 1080, h: 1321, cap: "Dagger, swallows and roses shirt art" }] },
     { id: "set-james-dragon-sleeve", style: "Color", artistId: "james", title: "Dragon sleeve",
       photos: [
         { f: "r5-james-05.jpg", w: 729, h: 1400, cap: "Dragon sleeve, full arm" },
@@ -326,7 +323,7 @@ window.SITE = {
         { f: "r5-james-21.jpg", w: 833, h: 571, cap: "Lady head with pearls, healed" },
       ] },
     { id: "p-orig-ig-194153", style: "Color", artistId: "james", title: "Lady head with flower and skull", photos: [{ f: "orig-ig-194153.jpg", w: 1080, h: 1254, cap: "Lady head with flower and skull" }] },
-    { id: "p-orig-os-5261262", style: "Paintings", artistId: null, title: "'Blessed' skull and heart flash panel", photos: [{ f: "orig-os-5261262.jpg", w: 334, h: 480, cap: "'Blessed' skull and heart flash panel" }] },
+    { id: "p-orig-os-5261262", style: "Paintings", artistId: "greg", title: "'Blessed' skull and heart flash panel", photos: [{ f: "orig-os-5261262.jpg", w: 334, h: 480, cap: "'Blessed' skull and heart flash panel" }] },
     { id: "p-orig-os-5261261", style: "Paintings", artistId: null, title: "Tiger and lady", photos: [{ f: "orig-os-5261261.jpg", w: 474, h: 476, cap: "Tiger and lady" }] },
     { id: "p-orig-os-5261260", style: "Black & grey", artistId: null, title: "Anchor and chainmail", photos: [{ f: "orig-os-5261260.jpg", w: 479, h: 479, cap: "Anchor and chainmail" }] },
     { id: "p-orig-os-5261259", style: "Black & grey", artistId: null, title: "Skull back piece", photos: [{ f: "orig-os-5261259.jpg", w: 477, h: 478, cap: "Skull back piece" }] },
@@ -345,7 +342,6 @@ window.SITE = {
     { id: "p-orig-os-5261246", style: "Color", artistId: null, title: "Back piece with skull and roses", photos: [{ f: "orig-os-5261246.jpg", w: 368, h: 477, cap: "Back piece with skull and roses" }] },
     { id: "p-orig-os-5261245", style: "Paintings", artistId: null, title: "Dragon panel", photos: [{ f: "orig-os-5261245.jpg", w: 229, h: 446, cap: "Dragon panel" }] },
     { id: "p-orig-os-5261244", style: "Paintings", artistId: null, title: "Dagger flash sheet", photos: [{ f: "orig-os-5261244.jpg", w: 356, h: 480, cap: "Dagger flash sheet" }] },
-    { id: "p-orig-os-5261243", style: "Paintings", artistId: "brian", title: "Horse flash painting", photos: [{ f: "orig-os-5261243.jpg", w: 585, h: 480, cap: "Horse flash painting" }] },
     { id: "p-orig-os-4503447", style: "Color", artistId: "thad", title: "Revolver with lettering", photos: [{ f: "orig-os-4503447.jpg", w: 480, h: 640, cap: "Revolver with lettering" }] },
     { id: "p-orig-os-4503446", style: "Color", artistId: "thad", title: "Lady head with roses, color", photos: [{ f: "orig-os-4503446.jpg", w: 480, h: 640, cap: "Lady head with roses, color" }] },
     { id: "p-orig-os-4503444", style: "Black & grey", artistId: "thad", title: "Wings back piece", photos: [{ f: "orig-os-4503444.jpg", w: 480, h: 640, cap: "Wings back piece" }] },
@@ -381,7 +377,6 @@ window.SITE = {
         { f: "r2-greg-greg-02.jpg", w: 1080, h: 1212, cap: "Religious flash painting, flat on the wall" },
         { f: "r2-greg-greg-01.jpg", w: 1080, h: 1108, cap: "Religious flash painting, framed and hung" },
       ] },
-    { id: "p-r2-greg-greg-09", style: "Paintings", artistId: "greg", title: "'Blessed' skull and mermaid flash painting", photos: [{ f: "r2-greg-greg-09.jpg", w: 909, h: 1440, cap: "'Blessed' skull and mermaid flash painting" }] },
     { id: "p-r2-james-james-01", style: "Paintings", artistId: "james", title: "Eagle and dragon flash sheets", photos: [{ f: "r2-james-james-01.jpg", w: 1080, h: 1157, cap: "Eagle and dragon flash sheets" }] },
     { id: "p-r2-james-james-02", style: "Paintings", artistId: "james", title: "Tiger and dragon flash sheets", photos: [{ f: "r2-james-james-02.jpg", w: 1080, h: 1157, cap: "Tiger and dragon flash sheets" }] },
     { id: "p-r2-james-james-03", style: "Traditional", artistId: "james", title: "Oni mask thigh tattoo", photos: [{ f: "r2-james-james-03.jpg", w: 1080, h: 1158, cap: "Oni mask thigh tattoo" }] },

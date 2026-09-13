@@ -318,8 +318,8 @@ test('the two lady head cards are one swipeable card, wide view first', async ({
 
 test('work the shop flagged as not-a-painting sits at the end of Paintings', async ({ page }) => {
   const S = await site(page);
-  const flagged = ['p-orig-ig-193745', 'p-orig-ig-194017', 'p-orig-os-5261262',
-                   'p-r2-greg-greg-09', 'p-orig-ig-193851', 'p-orig-ig-193848',
+  const flagged = ['p-orig-ig-193745', 'p-orig-os-5261262',
+                   'p-orig-ig-193851', 'p-orig-ig-193848',
                    'p-r2-james-james-07', 'p-r4-chas-chas-20', 'p-orig-ig-193739',
                    'p-orig-ig-193742', 'p-orig-os-5261255'];
   for (const id of flagged) expect(S.buried, `${id} not buried`).toContain(id);

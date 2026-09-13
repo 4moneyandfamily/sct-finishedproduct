@@ -114,8 +114,15 @@ broken images or a 4 MB photo on someone's phone plan.
 - **One tile per tattoo.** Several angles, detail shots or healing progress of
   the same piece go in the same `photos[]` array, never as separate projects.
   Two tiles of one tattoo is the single most common way this gallery goes
-  wrong, and the shop has caught it four separate times now. Before adding a
+  wrong, and the shop has caught it eight separate times now. Before adding a
   photo, look for the tattoo it belongs to.
+
+  Five of those eight were Brother Greg's paintings, found when his print
+  scans went up and landed beside phone snapshots of the same pieces the
+  archive had held for years. They do not look like duplicates in a file
+  listing — different angle, different crop, different light, different
+  filename — so the way to find them is to look at the wall. `npm run lint`
+  cannot catch this one.
 - **Do not edit the `w`/`h` numbers by hand.** They are what stops the page
   jumping while photos load (CLS is currently 0.0005). `add-photos.mjs` prints
   the right ones; `npm run lint` fails if they drift.
