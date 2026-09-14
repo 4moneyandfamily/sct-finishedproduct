@@ -141,6 +141,12 @@ test.describe('performance budgets', () => {
   });
 
   test('the whole grid can be revealed without blowing the weight budget', async ({ page }) => {
+    /* This one deliberately fetches the entire archive, and three projects do
+       it at once against a single static server, so the default 30s is a
+       budget on the wrong thing — what is being measured here is bytes, not
+       how fast the dev server can serve 170 images three times over. It timed
+       out perhaps one run in three and read as flakiness. */
+    test.setTimeout(120000);
     const bytes = new Map();
     page.on('response', async (res) => {
       const len = +(res.headers()['content-length'] || 0);

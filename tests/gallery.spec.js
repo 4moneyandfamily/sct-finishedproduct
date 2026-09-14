@@ -375,9 +375,13 @@ test('the shop hours read 12:00 PM to 7:00 PM, every day, everywhere', async ({ 
     await expect(rows.nth(i)).toContainText('12:00 PM \u2013 7:00 PM');
   }
   await expect(page.locator('footer')).toContainText('12:00 PM to 7:00 PM');
-  // nothing anywhere still says the old closing time
+  /* Nothing anywhere still says the old closing time. Word-bounded, because
+     the header prints the live Pacific clock and a bare "8 pm" search matches
+     the tail of 7:58 pm — which failed this suite at random for one minute in
+     six of every afternoon, and read as flakiness rather than as the test
+     being wrong. */
   const html = (await page.content()).toLowerCase();
-  expect(html).not.toContain('8 pm');
+  expect(html).not.toMatch(/\b8\s*pm\b/);
   expect(html).not.toContain('20:00');
 });
 
