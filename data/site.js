@@ -64,6 +64,7 @@ window.SITE = {
     instagram: "https://www.instagram.com/san_clemente_tattoo/",
     instagramHandle: "san_clemente_tattoo",
     facebook: "https://www.facebook.com/sanclementetattoo",
+    yelp: "https://www.yelp.com/biz/san-clemente-tattoo-san-clemente-2",
     /* Brother Greg's print store. It is the owner's own Big Cartel, not the
        shop's, but the shop is the only place a visitor ever goes looking for
        it, so it sits with the shop's own links and is labelled as his. */
@@ -88,7 +89,7 @@ window.SITE = {
 
   // Work credit only. Call the shop for who is actually on the wall today.
   artists: [
-    { id: "greg", name: "Brother Greg", handle: "brothergreg", instagram: "https://www.instagram.com/brothergreg/", store: "https://sanclementetattoo.bigcartel.com/", role: "Owner", bio: "Tattooer, painter, and owner of San Clemente Tattoo. Prints of his paintings are for sale in his own store." },
+    { id: "greg", name: "Brother Greg", handle: "brothergreg", instagram: "https://www.instagram.com/brothergreg/", role: "Owner", bio: "Tattooer, painter, and owner of San Clemente Tattoo. Prints of his paintings are for sale in his own store." },
     { id: "james", name: "James Whelan", handle: "_jameswhelan", instagram: "https://www.instagram.com/_jameswhelan/", role: "Artist", bio: "Tattooer at San Clemente Tattoo. DM or swing by the shop to book." },
     { id: "brian", name: "Brian Taylor", handle: "into_the_grave", instagram: "https://www.instagram.com/into_the_grave/", role: "Artist", bio: "Tattoo maker at San Clemente Tattoo. Books always open: DM or email to book." },
     { id: "chas", name: "Chas Byassee", handle: "cebyassee", instagram: "https://www.instagram.com/cebyassee/", role: "Artist", bio: "Professional tattooer since 1997." },
