@@ -435,6 +435,32 @@ test('the September merges each open as a two-photo swipeable card', async ({ pa
   }
 });
 
+test('the three-photo dragon back piece credits Brian Taylor throughout', async ({ page }) => {
+  const id = 'set-james-dragon-back'; // Keep existing shared links working.
+  const S = await site(page);
+  const project = S.projects.find(p => p.id === id);
+  expect(project.artistId).toBe('brian');
+  expect(project.photos.map(ph => ph.f)).toEqual([
+    'orig-ig-194138.jpg', 'orig-ig-194134.jpg', 'orig-ig-194140.jpg',
+  ]);
+  expect((await order(page))[2].id).toBe(id);
+  await expect(page.locator(`#card-${id}`)).toContainText('Brian Taylor');
+  await page.locator(`#card-${id}`).click();
+  await expect(page.locator('#viewer')).toHaveJSProperty('open', true);
+  await expect(page.locator('#v-rail .v-slide')).toHaveCount(3);
+  for (let i = 1; i <= 3; i++) {
+    await expect(page.locator('#v-counter')).toHaveText(`${i} / 3`);
+    await expect(page.locator('#v-by')).toHaveText('Color · Brian Taylor');
+    if (i < 3) await page.locator('#v-next').click();
+  }
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#viewer')).toHaveJSProperty('open', false);
+  await page.locator('#artist-filters button', { hasText: /^Brian Taylor$/ }).click();
+  await expect(page.locator(`#card-${id}`)).toBeVisible();
+  await page.locator('#artist-filters button', { hasText: /^James Whelan$/ }).click();
+  await expect(page.locator(`#card-${id}`)).toHaveCount(0);
+});
+
 test('the September intake is on the site, credited to James Whelan', async ({ page }) => {
   const S = await site(page);
   const files = new Set();
