@@ -17,7 +17,7 @@ window.SITE = {
 
      Bump it with any change that should be visible to a visitor. Format is
      the date, plus a letter if there is more than one in a day. */
-  build: "2026-09-14a",
+  build: "2026-09-18a",
 
   /* Every address where this site serves the public. Add one here, in this
      file, the moment the site goes up somewhere new — it needs no code change
@@ -310,7 +310,7 @@ window.SITE = {
         { f: "orig-ig-194116.jpg", w: 963, h: 1254, cap: "Skeleton and scorpion, detail" },
         { f: "orig-ig-194118.jpg", w: 1080, h: 1254, cap: "Skeleton and scorpion triptych" },
       ] },
-    { id: "set-james-dragon-back", style: "Color", artistId: "james", title: "Dragon back piece, Japanese style",
+    { id: "set-james-dragon-back", style: "Color", artistId: "brian", title: "Dragon back piece, Japanese style",
       photos: [
         { f: "orig-ig-194138.jpg", w: 1080, h: 1218, cap: "Dragon back piece with cherry blossoms" },
         { f: "orig-ig-194134.jpg", w: 946, h: 1255, cap: "Dragon back piece, Japanese style" },
