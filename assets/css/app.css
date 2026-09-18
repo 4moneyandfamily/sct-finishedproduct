@@ -508,12 +508,11 @@ footer a:hover { color: var(--white); }
 .foot-cta { margin: .9rem 0 0; }
 .ig-list { list-style: none; padding: 0; margin: 0; }
 .ig-list li { margin: 0 0 .35rem; }
-/* Social links: icon plus label, one treatment shared by the footer and Find the shop. */
+/* Social links: icon plus label, in the footer. */
 .social-row { display: flex; flex-wrap: wrap; gap: .4rem 1.1rem; margin: .9rem 0 0; padding: 0; align-items: center; }
 .social-row a { display: inline-flex; align-items: center; gap: .45rem; text-decoration: none; }
 .social-row a:hover { text-decoration: underline; }
 .social-row svg { width: 20px; height: 20px; display: block; flex: none; }
-.foot-press { margin: 0 0 .4rem; line-height: 1.9; }
 .legal { font-family: "Archivo", sans-serif; font-size: .8rem; color: var(--gray-text); margin-top: 1.6rem; }
 /* Quiet enough that a visitor never reads it, present enough that anyone
    checking a deploy can find it without dev tools. */
