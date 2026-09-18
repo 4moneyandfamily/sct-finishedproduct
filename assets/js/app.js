@@ -486,12 +486,6 @@
     var hnow = $('hours-now');
     if (hnow) hnow.textContent = SITE.hours.display;
 
-    /* The build stamp, and the host it is being served from. Two seconds of
-       squinting at a footer beats an afternoon of "I pushed it and the site
-       still looks old" — it says immediately whether you are looking at a
-       deploy that never landed, a cached page, or a different site entirely. */
-    var stamp = $('build-stamp');
-    if (stamp && SITE.build) stamp.textContent = ' Build ' + SITE.build + ' · ' + location.hostname;
 
     $('hours-list').innerHTML = SITE.hours.weekly.map(function (d) {
       return '<li data-day="' + esc(d.day) + '"><span>' + esc(d.day) + '</span><span>' + esc(spanLabel(d)) + '</span></li>';
